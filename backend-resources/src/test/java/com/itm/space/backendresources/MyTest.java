@@ -62,7 +62,6 @@ public class MyTest extends BaseIntegrationTest {
         userRepresentationMock = mock(UserRepresentation.class);
         userResourceMock = mock(UserResource.class);
         testId = UUID.randomUUID();
-
     }
 
 
@@ -108,9 +107,9 @@ public class MyTest extends BaseIntegrationTest {
 
         UserRepresentation userRepresentation = new UserRepresentation();
         userRepresentation.setId(String.valueOf(testId));
-        userRepresentation.setFirstName("tolick");
-        userRepresentation.setLastName("tolick");
-        userRepresentation.setEmail("tolik@mail.ru");
+        userRepresentation.setFirstName("alex");
+        userRepresentation.setLastName("alex");
+        userRepresentation.setEmail("alex@mail.ru");
 
         when(userResourceMock.toRepresentation()).thenReturn(userRepresentation);
         when(userResourceMock.roles()).thenReturn(roleMappingResource);
@@ -118,7 +117,7 @@ public class MyTest extends BaseIntegrationTest {
 
         MockHttpServletResponse response = mvc.perform(get("/api/users/" + testId))
                 .andDo(print())
-                .andExpect(jsonPath("$.firstName").value("tolick"))
+                .andExpect(jsonPath("$.firstName").value("alex"))
                 .andReturn()
                 .getResponse();
         assertEquals(HttpStatus.OK.value(), response.getStatus());
